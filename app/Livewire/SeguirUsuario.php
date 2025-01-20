@@ -15,7 +15,7 @@ class SeguirUsuario extends Component
     public function mount()
     {
         $this->followers = $this->user->followers->count();
-        $this->isFollowing = $this->user->siguiendo(Auth::user());
+        $this->isFollowing = Auth::check() ? $this->user->siguiendo(Auth::user()) : false;
     }
 
     public function follow()
