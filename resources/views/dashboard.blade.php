@@ -27,7 +27,9 @@
                     @endauth
                 </div>
 
-                <p class=" text-gray-800 text-sm mb-3 font-bold mt-5">
+                <livewire:seguir-usuario :user="$user" />
+
+                {{-- <p class=" text-gray-800 text-sm mb-3 font-bold mt-5">
                     {{ $user->followers->count() }}
                     <span class=" font-normal"> @choice('Seguidor|Seguidores', $user->followers->count())</span>
                 </p>
@@ -44,28 +46,12 @@
 
                 @auth
                     @if ($user->id !== Auth::user()->id)
-                        @if ( !$user->siguiendo( Auth::user() ) )
-                            <form action="{{ route('users.follow', $user) }}" method="POST">
-                                @csrf
-
-                                <input type="submit"
-                                    class=" bg-blue-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer"
-                                    value="Seguir">
-
-                            </form>
-                        @else
-                            <form action="{{ route('users.unfollow', $user) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-
-                                <input type="submit"
-                                    class=" bg-red-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer"
-                                    value="Dejar de Seguir">
-
-                            </form>
-                        @endif
+                        <button wire:click="follow"
+                            class=" {{ $isFollowing ? 'bg-red-600' : 'bg-blue-600' }} text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer">
+                            {{ $isFollowing ? 'Dejar de Seguir' : 'Seguir' }}
+                        </button>
                     @endif
-                @endauth
+                @endauth --}}
             </div>
         </div>
     </div>
